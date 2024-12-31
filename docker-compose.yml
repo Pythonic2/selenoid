@@ -8,10 +8,11 @@ services:
     ports:
       - "4444:4444"
     volumes:
-      - .:/etc/selenoid/ # assumed current dir contains browsers.json
+      - ./browsers.json:/etc/selenoid/browsers.json
       - /var/run/docker.sock:/var/run/docker.sock
+
   selenoid-ui:
-    image: "aerokube/selenoid-ui"
+    image: "selenoid/selenoid-ui-arm64" # Versão compatível com ARM64
     container_name: selenoid_ui
     network_mode: bridge
     links:
