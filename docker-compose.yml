@@ -1,24 +1,21 @@
 version: '3'
 services:
   selenoid:
-    build:
-      context: .
-      dockerfile: Dockerfile-selenoid
+    image: "sskorol/selenoid_chromium_vnc"
     container_name: selenoid
     network_mode: bridge
     command: -limit 20 -retry-count 1000 -timeout 3m0s
     ports:
       - "4444:4444"
     volumes:
-      - ./browsers.json:/etc/selenoid/browsers.json
+      - .:/etc/selenoid/ # assumed current dir contains browsers.json
       - /var/run/docker.sock:/var/run/docker.sock
-
   selenoid-ui:
-    build:
-      context: .
-      dockerfile: Dockerfile-selenoid-ui
+    image: "aerokube/selenoid-ui"
     container_name: selenoid_ui
     network_mode: bridge
-    command: ["--selenoid-uri", "http://selenoid:4444"]
+    links:
+      - selenoid
     ports:
       - "9090:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
