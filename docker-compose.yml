@@ -1,7 +1,7 @@
 version: '3'
 services:
   selenoid:
-    image: "sskorol/selenoid_chromium_vnc"
+    image: "sskorol/selenoid_chromium_vnc:100.0"
     container_name: selenoid
     network_mode: bridge
     command: -limit 20 -retry-count 1000 -timeout 3m0s
