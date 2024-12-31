@@ -1,0 +1,10 @@
+FROM arm64v8/alpine:latest
+
+RUN apk add --no-cache bash curl ca-certificates \
+    && mkdir /selenoid \
+    && curl -fsSL "https://github.com/aerokube/selenoid/releases/download/1.10.7/selenoid_linux_arm64" -o /selenoid/selenoid \
+    && chmod +x /selenoid/selenoid
+
+WORKDIR /selenoid
+
+ENTRYPOINT ["/selenoid/selenoid"]
