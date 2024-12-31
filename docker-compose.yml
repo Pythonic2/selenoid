@@ -1,8 +1,9 @@
+version: '3'
 services:
   selenoid:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-selenoid
     container_name: selenoid
     network_mode: bridge
     command: -limit 20 -retry-count 1000 -timeout 3m0s
@@ -15,7 +16,7 @@ services:
   selenoid-ui:
     build:
       context: .
-      dockerfile: dockerfile-selenoid-ui
+      dockerfile: Dockerfile-selenoid-ui
     container_name: selenoid_ui
     network_mode: bridge
     links:
