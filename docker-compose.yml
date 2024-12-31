@@ -19,8 +19,8 @@ services:
       dockerfile: Dockerfile-selenoid-ui
     container_name: selenoid_ui
     network_mode: bridge
+    command: ["--selenoid-uri", "http://selenoid:4444"]
     links:
       - selenoid
     ports:
       - "9090:8080"
-    command: ["--selenoid-uri", "http://selenoid:4444"]
