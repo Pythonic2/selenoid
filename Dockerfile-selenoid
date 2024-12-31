@@ -1,7 +1,7 @@
 FROM arm64v8/alpine:latest
 
 RUN apk add --no-cache bash curl ca-certificates
-COPY /home/pi/selenoid /selenoid/selenoid
+COPY selenoid /selenoid/selenoid
 RUN chmod +x /selenoid/selenoid
 
 WORKDIR /selenoid
