@@ -2,7 +2,7 @@ FROM arm64v8/alpine:latest
 
 RUN apk add --no-cache bash curl ca-certificates \
     && mkdir /selenoid-ui \
-    && curl -fsSL "https://github.com/aerokube/selenoid-ui/releases/download/1.10.8/selenoid-ui_linux_arm64" -o /selenoid-ui/selenoid-ui \
+    && curl -fsSL "https://github.com/aerokube/selenoid-ui/releases/download/1.10.9/selenoid-ui_linux_arm64" -o /selenoid-ui/selenoid-ui \
     && chmod +x /selenoid-ui/selenoid-ui
 
 WORKDIR /selenoid-ui
