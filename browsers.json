@@ -6,6 +6,7 @@
         "image": "sskorol/selenoid_chromium_vnc:100.0",
         "port": "4444",
         "path": "/",
+        "env": ["--no-sandbox", "--headless", "--disable-gpu", "--remote-debugging-port=9222"],
         "count": 5
       }
     }
