@@ -1,9 +1,14 @@
 FROM arm64v8/alpine:latest
 
+# Instalar dependências básicas
 RUN apk add --no-cache bash curl ca-certificates
+
+# Baixar o binário, caso não esteja localmente
 COPY selenoid_linux_arm64 /selenoid/selenoid
 RUN chmod +x /selenoid/selenoid
 
+# Configurar o diretório de trabalho
 WORKDIR /selenoid
 
+# Definir o ponto de entrada
 ENTRYPOINT ["/selenoid/selenoid"]
