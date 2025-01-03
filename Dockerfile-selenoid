@@ -1,24 +1,9 @@
 FROM arm64v8/alpine:latest
 
-# Instalar dependências básicas
 RUN apk add --no-cache bash curl ca-certificates
-
-# Criar diretórios necessários e configurar permissões
-RUN mkdir -p /home/selenium/pulse/.config/pulse && \
-    chmod -R 777 /home/selenium/pulse
-
-# Configurar variáveis de ambiente
-ENV PULSE_SERVER=none
-ENV HOME=/home/selenium
-
-# Copiar o binário do Selenoid
 COPY selenoid_linux_arm64 /selenoid/selenoid
-
-# Ajustar permissões do binário
 RUN chmod +x /selenoid/selenoid
 
-# Configurar o diretório de trabalho
 WORKDIR /selenoid
 
-# Definir o ponto de entrada
 ENTRYPOINT ["/selenoid/selenoid"]
