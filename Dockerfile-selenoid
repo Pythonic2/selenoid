@@ -1,7 +1,15 @@
-FROM arm64v8/alpine:latest
+#FROM arm64v8/alpine:latest
+
+#RUN apk add --no-cache bash curl ca-certificates
+#COPY selenoid_linux_arm64 /selenoid/selenoid
+#RUN chmod +x /selenoid/selenoid
+
+#WORKDIR /selenoid
+#ENTRYPOINT ["/selenoid/selenoid"]
+FROM alpine:latest  # Mudamos de arm64v8 para alpine padrão (AMD64)
 
 RUN apk add --no-cache bash curl ca-certificates
-COPY selenoid_linux_arm64 /selenoid/selenoid
+COPY selenoid_linux_amd64 /selenoid/selenoid  # Arquivo precisa ser recompilado para x86_64
 RUN chmod +x /selenoid/selenoid
 
 WORKDIR /selenoid
