@@ -25,7 +25,7 @@ services:
       - "9090:8080"
     depends_on:
       - selenoid
-    command: ["--selenoid-uri", "http://selenoid:4444"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
 
 # version: '3.9'
 
