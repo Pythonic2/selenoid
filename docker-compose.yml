@@ -2,9 +2,8 @@ version: '3.9'
 
 services:
   selenoid:
-    image: "selenoid/chrome:latest"  # Garantindo que é uma versão para AMD64
+    image: "selenoid/chrome:latest"
     container_name: selenoid
-    network_mode: bridge
     ports:
       - "4444:4444"
     volumes:
@@ -14,16 +13,51 @@ services:
       /bin/bash -c "
       Xvfb :99 -screen 0 1920x1080x24 & \
       exec /opt/bin/entry_point.sh"
+    networks:
+      - selenoid_net
 
   selenoid-ui:
-    image: "aerokube/selenoid-ui:latest"  # Usando imagem oficial para AMD64
+    image: "aerokube/selenoid-ui:latest"
     container_name: selenoid_ui
-    network_mode: bridge
     ports:
       - "9090:8080"
     depends_on:
       - selenoid
     command: ["--selenoid-uri", "http://selenoid:4444"]
+    networks:
+      - selenoid_net
+
+networks:
+  selenoid_net:
+    driver: bridge
+
+#funcionando
+# version: '3.9'
+
+# services:
+#   selenoid:
+#     image: "selenoid/chrome:latest"  # Garantindo que é uma versão para AMD64
+#     container_name: selenoid
+#     network_mode: bridge
+#     ports:
+#       - "4444:4444"
+#     volumes:
+#       - ./browsers.json:/etc/selenoid/browsers.json
+#       - /var/run/docker.sock:/var/run/docker.sock
+#     command: >
+#       /bin/bash -c "
+#       Xvfb :99 -screen 0 1920x1080x24 & \
+#       exec /opt/bin/entry_point.sh"
+
+#   selenoid-ui:
+#     image: "aerokube/selenoid-ui:latest"  # Usando imagem oficial para AMD64
+#     container_name: selenoid_ui
+#     network_mode: bridge
+#     ports:
+#       - "9090:8080"
+#     depends_on:
+#       - selenoid
+#     command: ["--selenoid-uri", "http://selenoid:4444"]
 
 # version: '3.9'
 
